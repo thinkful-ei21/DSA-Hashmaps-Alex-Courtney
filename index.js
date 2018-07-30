@@ -39,7 +39,7 @@ class HashMap {
             value,
             deleted: false
         };
-        
+
     }
 
     _findSlot(key) {
@@ -89,24 +89,31 @@ HashMap.SIZE_RATIO = 3;
 
 function pal(str) {
 
-    let palHash = new HashMap()
+    let palHash = new HashMap();
 
     for (let x=0; x<str.length; x++) {
+        let tempValue;
 
-        let y = palHash._findSlot(str[x])
-        // let z = palHash.get(str[x])
-
-        console.log(y)
-
-        if(y){
-            let tempValue = palHash.get(str[x])
-            palHash.set(y, tempValue + 1)
-        } else {
-            palHash.set(y, 1)
+        try {
+          tempValue = palHash.get(str[x])
+        } catch(err) {
+          tempValue = 0;
         }
+
+        palHash.set(str[x], tempValue + 1);
     }
 
-    console.log(palHash)
+    let odd = 0;
+    for (let i = 0; i < palHash.length; i++) {
+      if (palHash.get(str[i]) % 2 !== 0) {
+        odd++;
+      }
+    }
+
+    if(odd > 1) {
+      return false;
+    }
+    return true;
 
 }
 
@@ -132,7 +139,7 @@ function main() {
 
 //   console.log(lor);
 
-pal("acecarr")
+console.log(pal("acearr"));
 
 }
 
