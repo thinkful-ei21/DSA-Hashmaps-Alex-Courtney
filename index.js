@@ -51,6 +51,7 @@ class HashMap {
     }
 
     _resize(size) {
+        console.log("resized")
         const oldSlots = this._slots;
         this._capacity = size;
         // Reset the length - it will get rebuilt as you add the items back
@@ -81,3 +82,8 @@ class HashMap {
 HashMap.MAX_LOAD_RATIO = 0.9;
 HashMap.SIZE_RATIO = 3;
 
+function main () {
+    let lor = new HashMap()
+    
+
+}
